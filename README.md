@@ -2,10 +2,10 @@
 
 The framework uses four functional agents with distinct responsibilities, aiming to generate a concise summary that captures domain-relevant information while remaining faithful to the source and preserving the meaning of safety-sensitive content.
 
-1. The Guidance Extraction Agent selects source-grounded, domain-aware sentences;
-2. The Guided Summarization Agent uses these sentences as guidance to generate a task-adapted initial summary;
-3. The Verification Agent then assesses the summary for faithfulness and safety consistency and identify actionable issues;
-4. The Revision Agent proposes targeted edits, and decides whether to accept the revision after re-verification.
+- The Guidance Extraction Agent selects source-grounded, domain-aware sentences;
+- The Guided Summarization Agent uses these sentences as guidance to generate a task-adapted initial summary;
+- The Verification Agent then assesses the summary for faithfulness and safety consistency and identify actionable issues;
+- The Revision Agent proposes targeted edits, and decides whether to accept the revision after re-verification.
 
 <img width="1524" height="540" alt="fig1" src="https://github.com/user-attachments/assets/d704ccdd-c397-46f1-9198-4ef87e621a69" />
 
