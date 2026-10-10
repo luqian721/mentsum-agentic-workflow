@@ -105,6 +105,9 @@ Then configure `TERM_MATCHER=quickumls` and the `QUICKUMLS_*` values in `.env`. 
 
 An external GSum-compatible process can be selected with `SUMMARIZER_BACKEND=external_gsum` and `GSUM_COMMAND`.
 
+## Resources
+We construct a risk-cue lexicon by drawing surface forms from the [Construct-Tracker Suicide Risk Lexicon v1.0](https://github.com/danielmlow/construct-tracker) and organizing them into five domain-specific categories.
+The resulting [risk-cue lexicon](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
 
 ## Privacy and limitations
 
