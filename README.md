@@ -33,6 +33,7 @@ The runtime prompt definitions are available in [src/mentsum_agent/prompts.py](s
 Clone the repository and create an isolated environment:
 
 ```bash
+git clone https://github.com/luqian721/mentsum-agentic-workflow/tree/main
 cd mentsum-agentic-workflow
 python3.11 -m venv .venv
 source .venv/bin/activate
@@ -83,9 +84,36 @@ Start with a small input file before running a large collection:
 python -m mentsum_agent.run_batch \
   --source-file data/your_data.source \
   --limit 5 \
-  --env-file .env
+  --env-file .env \
   --output outputs/pilot.jsonl
 ```
+
+
+## Model backends
+The workflow supports two summarization backends:
+
+- LLM: Configured through `SUMMARIZER_BACKEND=llm`, this is the default demonstration backend and can also be used for experiments that replace the fine-tuned GSum summarizer.
+
+- GSum: Configured through `SUMMARIZER_BACKEND=external_gsum` and `GSUM_COMMAND`, this backend integrates an external GSum model fine-tuned on MentSum. The original implementation and training instructions are available in the [official GSum repository](https://github.com/neulab/guided_summarization).
+
+
+## Resources
+
+### Mental-health terminology
+
+We construct a domain-specific terminology resource from the [2016 Kaiser Permanente Convergent Medical Terminology (CMT) Mental Health Problem List Subset](https://www.nlm.nih.gov/pubs/techbull/ma16/brief/ma16_snomed_ct_updated_subsets.html), which contains 1,162 SNOMED CT concepts. 
+
+To enable QuickUMLS, set `TERM_MATCHER=quickumls` and configure the relevant `QUICKUMLS_*` paths in `.env`. A local QuickUMLS installation initialized from licensed UMLS data is required. The UMLS and SNOMED CT resources are subject to their respective [license terms](https://www.nlm.nih.gov/research/umls/Snomed/cmt.html).
+
+For demonstration purposes, the repository also provides a lightweight lexicon matcher configured through `TERM_MATCHER=lexicon`, without requiring UMLS.
+
+### Risk-cue lexicon
+
+We construct a risk-cue lexicon by drawing surface forms from the [Construct-Tracker Suicide Risk Lexicon v1.0](https://github.com/danielmlow/construct-tracker) and organizing them into five domain-specific categories.
+The resulting [risk-cue lexicon](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
+
+The defalut demonstration configuration uses a smaller illustrative lexicon. To use the full resource, set `RISK_CUE_PATH=resources/construct_tracker_safety_risk_cues_5cat.json` in `.env`.
+
 
 ## Input and output
 
@@ -93,23 +121,6 @@ Input is a UTF-8 text file with one complete source post per line. See [`example
 
 `run_one` writes formatted JSON. `run_batch` writes JSON Lines, with one result per source line. Each successful result includes the source hash, extracted guidance, initial and final summaries, verification and revision histories, stopping reason, model ID, prompt versions, and public workflow configuration. See [`examples/example_output.jsonl`](examples/example_output.jsonl) for mock output.
 
-## Optional backends
-
-The default matcher uses the small transparent lexicon in `resources/`. QuickUMLS can be installed with:
-
-```bash
-pip install -e ".[quickumls]"
-```
-
-Then configure `TERM_MATCHER=quickumls` and the `QUICKUMLS_*` values in `.env`. A local UMLS installation and appropriate license are required.
-
-An external GSum-compatible process can be selected with `SUMMARIZER_BACKEND=external_gsum` and `GSUM_COMMAND`.
-
-## Resources
-We construct a domain-specific terminology resource from the [2016 Kaiser Permanente Convergent Medical Terminology (CMT) Mental Health Problem List Subset](https://www.nlm.nih.gov/pubs/techbull/ma16/brief/ma16_snomed_ct_updated_subsets.html), which contains 1,162 SNOMED CT concepts. Users can obtain it under the applicable [UMLS and SNOMED CT license terms](https://www.nlm.nih.gov/research/umls/Snomed/cmt.html).
-
-We construct a risk-cue lexicon by drawing surface forms from the [Construct-Tracker Suicide Risk Lexicon v1.0](https://github.com/danielmlow/construct-tracker) and organizing them into five domain-specific categories.
-The resulting [risk-cue lexicon](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
 
 ## Privacy and limitations
 
