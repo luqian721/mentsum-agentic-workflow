@@ -14,7 +14,7 @@ The framework uses four functional agents with distinct responsibilities, aiming
 
 Followings are detailed prompts used for guidance controller, guided summarizer, faithfulness checker, safety checker and revision editor. 
 
-The runtime prompt definitions are available in [src/mentsum_agent/prompts.py](src/mentsum_agent/prompts.py).
+The runtime prompt definitions are available in [`src/mentsum_agent/prompts.py`](src/mentsum_agent/prompts.py).
 
 <img width="1071" height="411" alt="prompt1" src="https://github.com/user-attachments/assets/c6f2a9cd-c4f5-4328-bf20-7d41525f8cc8" />
 <img width="1082" height="319" alt="prompt2" src="https://github.com/user-attachments/assets/9c610261-3be3-48b0-909a-139bdaf2fa47" />
@@ -103,16 +103,16 @@ The workflow supports two summarization backends:
 
 We construct a domain-specific terminology resource from the [2016 Kaiser Permanente Convergent Medical Terminology (CMT) Mental Health Problem List Subset](https://www.nlm.nih.gov/pubs/techbull/ma16/brief/ma16_snomed_ct_updated_subsets.html), which contains 1,162 SNOMED CT concepts. 
 
-To enable QuickUMLS, set `TERM_MATCHER=quickumls` and configure the relevant `QUICKUMLS_*` paths in `.env`. A local QuickUMLS installation initialized from licensed UMLS data is required. The UMLS and SNOMED CT resources are subject to their respective [license terms](https://www.nlm.nih.gov/research/umls/Snomed/cmt.html).
+To enable [QuickUMLS](https://github.com/Georgetown-IR-Lab/QuickUMLS), set `TERM_MATCHER=quickumls` and configure the relevant `QUICKUMLS_*` paths in `.env`. A local QuickUMLS installation initialized from licensed UMLS data is required. The UMLS and SNOMED CT resources are subject to their respective [license terms](https://www.nlm.nih.gov/research/umls/Snomed/cmt.html).
 
 For demonstration purposes, the repository also provides a lightweight lexicon matcher configured through `TERM_MATCHER=lexicon`, without requiring UMLS.
 
 ### Risk-cue lexicon
 
 We construct a risk-cue lexicon by drawing surface forms from the [Construct-Tracker Suicide Risk Lexicon v1.0](https://github.com/danielmlow/construct-tracker) and organizing them into five domain-specific categories.
-The resulting [risk-cue lexicon](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
+The resulting [`resources/construct_tracker_safety_risk_cues_5cat.json`](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
 
-The defalut demonstration configuration uses a smaller illustrative lexicon. To use the full resource, set `RISK_CUE_PATH=resources/construct_tracker_safety_risk_cues_5cat.json` in `.env`.
+The defalut demonstration configuration uses a smaller illustrative lexicon. To use the full resource, set `RISK_CUE_PATH` in `.env`.
 
 
 ## Input and output
