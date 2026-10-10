@@ -106,6 +106,8 @@ Then configure `TERM_MATCHER=quickumls` and the `QUICKUMLS_*` values in `.env`. 
 An external GSum-compatible process can be selected with `SUMMARIZER_BACKEND=external_gsum` and `GSUM_COMMAND`.
 
 ## Resources
+We construct a domain-specific terminology resource from the [2016 Kaiser Permanente Convergent Medical Terminology (CMT) Mental Health Problem List Subset](https://www.nlm.nih.gov/pubs/techbull/ma16/brief/ma16_snomed_ct_updated_subsets.html), which contains 1,162 SNOMED CT concepts. Users can obtain it under the applicable [UMLS and SNOMED CT license terms](https://www.nlm.nih.gov/research/umls/Snomed/cmt.html).
+
 We construct a risk-cue lexicon by drawing surface forms from the [Construct-Tracker Suicide Risk Lexicon v1.0](https://github.com/danielmlow/construct-tracker) and organizing them into five domain-specific categories.
 The resulting [risk-cue lexicon](resources/construct_tracker_safety_risk_cues_5cat.json) contains 344 surface forms.
 
