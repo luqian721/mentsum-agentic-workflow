@@ -89,9 +89,9 @@ python -m mentsum_agent.run_batch \
 
 ## Input and output
 
-Input is a UTF-8 text file with one complete source post per line. See [`examples/example.source`](examples/example.source) for input examples.
+Input is a UTF-8 text file with one complete source post per line. See [`examples/example.source`](examples/example.source) for synthetic input.
 
-`run_one` writes formatted JSON. `run_batch` writes JSON Lines, with one result per source line. Each successful result includes the source hash, extracted guidance, initial and final summaries, verification and revision histories, stopping reason, model ID, prompt versions, and public workflow configuration. See [`examples/example_output.jsonl`](examples/example_output.jsonl) for example outputs.
+`run_one` writes formatted JSON. `run_batch` writes JSON Lines, with one result per source line. Each successful result includes the source hash, extracted guidance, initial and final summaries, verification and revision histories, stopping reason, model ID, prompt versions, and public workflow configuration. See [`examples/example_output.jsonl`](examples/example_output.jsonl) for mock output.
 
 ## Optional backends
 
